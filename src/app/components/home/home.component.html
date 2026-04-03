@@ -85,15 +85,22 @@
       </div>
     </div>
     <swiper-container  class="mySwiper" [breakpoints]="breakPoints" navigation-next-el=".custom-next-button" navigation-prev-el=".custom-prev-button"  space-between="20">
-      <swiper-slide *ngFor="let recipe of featuredRecipe">
+      <swiper-slide *ngFor="let recipe of featuredRecipe; let i = index">
         <div class="flex flex-col h-full rounded-md overflow-hidden">
           <!-- Image Section -->
-          <img class="lg:h-60 md:h-36 w-full object-cover object-center" [src]="recipe.image" alt="recipe">
+          <img class="lg:h-60 md:h-36 w-full object-cover object-center"
+            [src]="recipe.image"
+            [alt]="recipe.title"
+            [attr.loading]="i === 0 ? 'eager' : 'lazy'"
+            [attr.fetchpriority]="i === 0 ? 'high' : null"
+            decoding="async"
+            width="312"
+            height="231">
       
           <!-- Content Section -->
           <div class="flex flex-col flex-grow p-4 lg:p-6 bg-cardBottomColor border border-borderOutline border-opacity-60 border-e border-s rounded-ee-md rounded-es-md">
-            <h1 class="font-montserrat text-xl lg:text-2xl font-bold mb-3">{{recipe.title}}</h1>
-            <div class="leading-relaxed mb-8 lg:mb-11 font-light text-sm lg:text-base" [innerHTML]="recipe.summary | slice:0:140">...</div>
+            <h1 class="recipe-card-title font-montserrat text-xl lg:text-2xl font-bold mb-3">{{recipe.title}}</h1>
+            <p class="recipe-card-summary leading-relaxed mb-8 lg:mb-11 font-light text-sm lg:text-base">{{recipe.cardSummary}}</p>
       
             <!-- Bottom Section (Align to Bottom) -->
             <div class="mt-auto flex justify-between items-center flex-wrap gap-5 lg:gap-0">
@@ -212,10 +219,16 @@
       <div *ngIf="activeTab === 'tab1'" class="">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 -m-4 gap-4 p-4">
           <div *ngFor="let recipe of searchResults" class="flex flex-col h-full rounded-md overflow-hidden">
-            <img class="lg:h-60 md:h-36 w-full object-cover object-center" [src]="recipe.image" alt="recipe">
+            <img class="lg:h-60 md:h-36 w-full object-cover object-center"
+              [src]="recipe.image"
+              [alt]="recipe.title"
+              loading="lazy"
+              decoding="async"
+              width="312"
+              height="231">
             <div class="flex flex-col flex-grow p-6 bg-cardBottomColor border border-borderOutline border-opacity-60 border-e border-s rounded-ee-md rounded-es-md">
-              <h1 class="font-montserrat text-xl lg:text-2xl font-bold mb-3">{{recipe.title}}</h1>
-              <p class="leading-relaxed mb-8 lg:mb-11 font-light text-sm lg:text-base">{{recipe.title}}</p>
+              <h1 class="recipe-card-title font-montserrat text-xl lg:text-2xl font-bold mb-3">{{recipe.title}}</h1>
+              <p class="recipe-card-summary leading-relaxed mb-8 lg:mb-11 font-light text-sm lg:text-base">{{recipe.cardSummary}}</p>
               <div class="mt-auto flex justify-between items-center flex-wrap gap-5 lg:gap-0">
                 <p class="text-xs font-medium">
                   <span>40 MINS</span> <span> - EASY PREP</span> <span> - 3 SERVES</span>
@@ -232,10 +245,16 @@
       <div *ngIf="activeTab === 'tab2'" class="">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 -m-4 gap-4 p-4">
           <div *ngFor="let recipe of searchResults" class="flex flex-col h-full rounded-md overflow-hidden">
-            <img class="lg:h-60 md:h-36 w-full object-cover object-center" [src]="recipe.image" alt="recipe">
+            <img class="lg:h-60 md:h-36 w-full object-cover object-center"
+              [src]="recipe.image"
+              [alt]="recipe.title"
+              loading="lazy"
+              decoding="async"
+              width="312"
+              height="231">
             <div class="flex flex-col flex-grow p-6 bg-cardBottomColor border border-borderOutline border-opacity-60 border-e border-s rounded-ee-md rounded-es-md">
-              <h1 class="font-montserrat text-xl lg:text-2xl font-bold mb-3">{{recipe.title}}</h1>
-              <p class="leading-relaxed mb-8 lg:mb-11 font-light text-sm lg:text-base">{{recipe.title}}</p>
+              <h1 class="recipe-card-title font-montserrat text-xl lg:text-2xl font-bold mb-3">{{recipe.title}}</h1>
+              <p class="recipe-card-summary leading-relaxed mb-8 lg:mb-11 font-light text-sm lg:text-base">{{recipe.cardSummary}}</p>
               <div class="mt-auto flex justify-between items-center flex-wrap gap-5 lg:gap-0">
                 <p class="text-xs font-medium">
                   <span>40 MINS</span> <span> - EASY PREP</span> <span> - 3 SERVES</span>
@@ -252,10 +271,16 @@
       <div *ngIf="activeTab === 'tab3'" class="">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 -m-4 gap-4 p-4">
           <div *ngFor="let recipe of searchResults" class="flex flex-col h-full rounded-md overflow-hidden">
-            <img class="lg:h-60 md:h-36 w-full object-cover object-center" [src]="recipe.image" alt="recipe">
+            <img class="lg:h-60 md:h-36 w-full object-cover object-center"
+              [src]="recipe.image"
+              [alt]="recipe.title"
+              loading="lazy"
+              decoding="async"
+              width="312"
+              height="231">
             <div class="flex flex-col flex-grow p-6 bg-cardBottomColor border border-borderOutline border-opacity-60 border-e border-s rounded-ee-md rounded-es-md">
-              <h1 class="font-montserrat text-xl lg:text-2xl font-bold mb-3">{{recipe.title}}</h1>
-              <p class="leading-relaxed mb-8 lg:mb-11 font-light text-sm lg:text-base">{{recipe.title}}</p>
+              <h1 class="recipe-card-title font-montserrat text-xl lg:text-2xl font-bold mb-3">{{recipe.title}}</h1>
+              <p class="recipe-card-summary leading-relaxed mb-8 lg:mb-11 font-light text-sm lg:text-base">{{recipe.cardSummary}}</p>
               <div class="mt-auto flex justify-between items-center flex-wrap gap-5 lg:gap-0">
                 <p class="text-xs font-medium">
                   <span>40 MINS</span> <span> - EASY PREP</span> <span> - 3 SERVES</span>
@@ -272,10 +297,16 @@
       <div *ngIf="activeTab === 'tab4'" >
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 -m-4 gap-4 p-4">
           <div *ngFor="let recipe of searchResults" class="flex flex-col h-full rounded-md overflow-hidden">
-            <img class="lg:h-60 md:h-36 w-full object-cover object-center" [src]="recipe.image" alt="recipe">
+            <img class="lg:h-60 md:h-36 w-full object-cover object-center"
+              [src]="recipe.image"
+              [alt]="recipe.title"
+              loading="lazy"
+              decoding="async"
+              width="312"
+              height="231">
             <div class="flex flex-col flex-grow p-6 bg-cardBottomColor border border-borderOutline border-opacity-60 border-e border-s rounded-ee-md rounded-es-md">
-              <h1 class="font-montserrat text-xl lg:text-2xl font-bold mb-3">{{recipe.title}}</h1>
-              <p class="leading-relaxed mb-8 lg:mb-11 font-light text-sm lg:text-base">{{recipe.title}}</p>
+              <h1 class="recipe-card-title font-montserrat text-xl lg:text-2xl font-bold mb-3">{{recipe.title}}</h1>
+              <p class="recipe-card-summary leading-relaxed mb-8 lg:mb-11 font-light text-sm lg:text-base">{{recipe.cardSummary}}</p>
               <div class="mt-auto flex justify-between items-center flex-wrap gap-5 lg:gap-0">
                 <p class="text-xs font-medium">
                   <span>40 MINS</span> <span> - EASY PREP</span> <span> - 3 SERVES</span>
@@ -292,10 +323,16 @@
       <div *ngIf="activeTab === 'tab5'" >
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 -m-4 gap-4 p-4">
           <div *ngFor="let recipe of searchResults" class="flex flex-col h-full rounded-md overflow-hidden">
-            <img class="lg:h-60 md:h-36 w-full object-cover object-center" [src]="recipe.image" alt="recipe">
+            <img class="lg:h-60 md:h-36 w-full object-cover object-center"
+              [src]="recipe.image"
+              [alt]="recipe.title"
+              loading="lazy"
+              decoding="async"
+              width="312"
+              height="231">
             <div class="flex flex-col flex-grow p-6 bg-cardBottomColor border border-borderOutline border-opacity-60 border-e border-s rounded-ee-md rounded-es-md">
-              <h1 class="font-montserrat text-xl lg:text-2xl font-bold mb-3">{{recipe.title}}</h1>
-              <p class="leading-relaxed mb-8 lg:mb-11 font-light text-sm lg:text-base">{{recipe.title}}</p>
+              <h1 class="recipe-card-title font-montserrat text-xl lg:text-2xl font-bold mb-3">{{recipe.title}}</h1>
+              <p class="recipe-card-summary leading-relaxed mb-8 lg:mb-11 font-light text-sm lg:text-base">{{recipe.cardSummary}}</p>
               <div class="mt-auto flex justify-between items-center flex-wrap gap-5 lg:gap-0">
                 <p class="text-xs font-medium">
                   <span>40 MINS</span> <span> - EASY PREP</span> <span> - 3 SERVES</span>
@@ -312,10 +349,16 @@
       <div *ngIf="activeTab === 'tab6'" >
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 -m-4 gap-4 p-4">
           <div *ngFor="let recipe of searchResults" class="flex flex-col h-full rounded-md overflow-hidden">
-            <img class="lg:h-60 md:h-36 w-full object-cover object-center" [src]="recipe.image" alt="recipe">
+            <img class="lg:h-60 md:h-36 w-full object-cover object-center"
+              [src]="recipe.image"
+              [alt]="recipe.title"
+              loading="lazy"
+              decoding="async"
+              width="312"
+              height="231">
             <div class="flex flex-col flex-grow p-6 bg-cardBottomColor border border-borderOutline border-opacity-60 border-e border-s rounded-ee-md rounded-es-md">
-              <h1 class="font-montserrat text-xl lg:text-2xl font-bold mb-3">{{recipe.title}}</h1>
-              <p class="leading-relaxed mb-8 lg:mb-11 font-light text-sm lg:text-base">{{recipe.title}}</p>
+              <h1 class="recipe-card-title font-montserrat text-xl lg:text-2xl font-bold mb-3">{{recipe.title}}</h1>
+              <p class="recipe-card-summary leading-relaxed mb-8 lg:mb-11 font-light text-sm lg:text-base">{{recipe.cardSummary}}</p>
               <div class="mt-auto flex justify-between items-center flex-wrap gap-5 lg:gap-0">
                 <p class="text-xs font-medium">
                   <span>40 MINS</span> <span> - EASY PREP</span> <span> - 3 SERVES</span>
@@ -332,10 +375,16 @@
       <div *ngIf="activeTab === 'tab7'" >
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 -m-4 gap-4 p-4">
           <div *ngFor="let recipe of searchResults" class="flex flex-col h-full rounded-md overflow-hidden">
-            <img class="lg:h-60 md:h-36 w-full object-cover object-center" [src]="recipe.image" alt="recipe">
+            <img class="lg:h-60 md:h-36 w-full object-cover object-center"
+              [src]="recipe.image"
+              [alt]="recipe.title"
+              loading="lazy"
+              decoding="async"
+              width="312"
+              height="231">
             <div class="flex flex-col flex-grow p-6 bg-cardBottomColor border border-borderOutline border-opacity-60 border-e border-s rounded-ee-md rounded-es-md">
-              <h1 class="font-montserrat text-xl lg:text-2xl font-bold mb-3">{{recipe.title}}</h1>
-              <p class="leading-relaxed mb-8 lg:mb-11 font-light text-sm lg:text-base">{{recipe.title}}</p>
+              <h1 class="recipe-card-title font-montserrat text-xl lg:text-2xl font-bold mb-3">{{recipe.title}}</h1>
+              <p class="recipe-card-summary leading-relaxed mb-8 lg:mb-11 font-light text-sm lg:text-base">{{recipe.cardSummary}}</p>
               <div class="mt-auto flex justify-between items-center flex-wrap gap-5 lg:gap-0">
                 <p class="text-xs font-medium">
                   <span>40 MINS</span> <span> - EASY PREP</span> <span> - 3 SERVES</span>

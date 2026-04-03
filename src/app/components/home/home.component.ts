@@ -70,7 +70,7 @@ export class HomeComponent {
     this.commonService.searchForRecipe(this.query).subscribe({
       next: (res) => {
         // console.log(res);
-        this.searchResults = res.results;
+        this.searchResults = this.normalizeRecipes(res.results);
       },
       error: (err) => {
         // console.log(err);
@@ -83,13 +83,36 @@ export class HomeComponent {
     this.commonService.getRandomRecipes().subscribe({
       next: (res) =>{
         // console.log(res);
-        this.featuredRecipe = res.recipes
+        this.featuredRecipe = this.normalizeRecipes(res.recipes)
       },
       error(err) {
         // console.log(err);
           
       },
     })
+  }
+
+  private normalizeRecipes(recipes: any[] = []) {
+    return recipes.map((recipe) => ({
+      ...recipe,
+      cardSummary: this.buildCardSummary(recipe),
+    }));
+  }
+
+  private buildCardSummary(recipe: any): string {
+    const plainSummary = this.stripHtml(recipe?.summary);
+
+    return plainSummary
+      || recipe?.dishTypes?.join(', ')
+      || 'Open the recipe to see ingredients, steps, and serving details.';
+  }
+
+  private stripHtml(value: string | null | undefined): string {
+    return (value ?? '')
+      .replace(/<[^>]*>/g, ' ')
+      .replace(/&nbsp;/gi, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
   }
 
 }

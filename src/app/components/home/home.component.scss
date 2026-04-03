@@ -6,3 +6,20 @@
 button{
     font-size: 70% !important;
 }
+
+.recipe-card-title,
+.recipe-card-summary {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.recipe-card-title {
+    -webkit-line-clamp: 2;
+    min-height: 3.75rem;
+}
+
+.recipe-card-summary {
+    -webkit-line-clamp: 3;
+    min-height: 4.5rem;
+}
